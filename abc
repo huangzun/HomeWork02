@@ -1,0 +1,31 @@
+use abc;
+#第一题
+drop table if exists sheet;
+create table sheet(
+    emp_no int unsigned,
+    birth_date date,
+    first_name varchar(20),
+    last_name varchar(20),
+    gender char(1),
+    hire_date date);
+desc abc;
+insert into abc values(10001,'1953-09-02','Georgi','Facello','M','1986-06-26'),
+          (10002,'1964-06-02','Bezalel','Simmle','F','1985-11-21'),
+    (10003,'1959-12-03','Parto','Bamford','M','1986-08-28') ,(10004,'1954-05-01','Christian','Koblick','M','1986-12-01');
+select * from abc;
+select*from abc order by hire_date limit 1;
+#第二题
+select film.film_id,film.title from film left join film_category fc on film.film_id = fc.film_id where fc.film_id is null;
+#第三题
+select * from employees limit 5,5;
+#第四题
+alter table actor add unique index uniq_idx_firstname(first_name);
+alter table actor add index idx_lastname(last_name);
+#第五题
+SELECT
+    a.id,
+    a.number,
+    (select count(distinct b.number)from passing_number b where b.number>=a.number ) as t_rank
+    from passing_number a
+    order by a.number desc,id asc
+    ;
